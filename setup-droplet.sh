@@ -13,6 +13,7 @@
 #  The script creates a user called "github"
 #
 #  Passwords are passed in using the "do_pwd" environment variable.
+export do_pwd=XXXX
 #
 #  LOG FILE at /var/log/setup-droplet.log
 #
