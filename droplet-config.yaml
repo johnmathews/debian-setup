@@ -1,0 +1,13 @@
+name: cms
+region: AMS3
+size: s-1vcpu-1gb
+image: ubuntu-23-10-x64
+enable_backups: false
+enable_ipv6: false
+user_data: null
+private_networking: null
+volumes: null
+enable_monitoring: true
+tags:
+  - lettergun
+  - cms
