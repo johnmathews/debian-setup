@@ -36,15 +36,7 @@ echo "*** apt-get update done."
 apt-get install -y apt-transport-https ca-certificates curl cmake software-properties-common fzf tree xclip npm
 echo "*** apt-get install done."
 
-echo "*** installed curl, apt-trasport-https, ca-certicates, curl, cmake, software-properties-common fzf"
-
-# Install nvm
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-# This might not work because the session might need to be reloaded first (`exec zsh`) so that the `nvm` command is on $PATH
-nvm install node
-# enabling corepack will add yarn to $PATH
-corepack enable
-yarn set version stable
+echo "*** Installed curl, apt-trasport-https, ca-certicates, curl, cmake, software-properties-common fzf"
 
 # Install neovim 0.9
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
@@ -232,3 +224,6 @@ su -c 'export NVM_DIR=~/.nvm && curl https://raw.githubusercontent.com/creationi
 su -c 'nvm install node && corepack enable' github
 
 echo "*** Setup complete. Good job!"
+
+echo "*** About to reboot"
+sudo reboot
