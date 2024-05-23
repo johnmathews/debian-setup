@@ -4,17 +4,19 @@
 #
 #      ABOUT THIS SCROPT:
 #
-#  It makes a new droplet feel familiar.
+#  This script is intended to makes a new droplet feel familiar and productive.
 #  It installs docker, neovim (with my debian config), git, oh-my-zsh, atuin, lazygit,
-#  To restart: `(sudo) reboot`
 #
-#  It makes a user called "github"
-#  Passwords are azsxAZSX
+#  Logs: /var/log/setup-droplet.log
+#  Restart: `(sudo) reboot`
+#
+#  The script creates a user called "github"
+#
+#  Passwords are passed in using the "do_pwd" environment variable.
 #
 #  LOG FILE at /var/log/setup-droplet.log
 #
 ############################################################################################
-
 
 # Exit on error and on error in pipeline
 set -eo pipefail
@@ -37,7 +39,7 @@ echo "*** apt-get install done."
 echo "*** installed curl, apt-trasport-https, ca-certicates, curl, cmake, software-properties-common fzf"
 
 # Install nvm
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 # This might not work because the session might need to be reloaded first (`exec zsh`) so that the `nvm` command is on $PATH
 nvm install node
 # enabling corepack will add yarn to $PATH
@@ -167,7 +169,7 @@ echo "*** Sourced ~/.aliases in zshrc and bashrc"
 
 # Set Zsh as the default shell
 # you need to change the password before doing this, due to policies
-echo 'root:azsxAZSX' | sudo chpasswd
+echo "root:${do_pwd}" | sudo chpasswd
 chsh -s "$(which zsh)"
 echo "*** Changed the default shell to zsh"
 
@@ -207,12 +209,11 @@ cp ~/.aliases /etc/skel/
 echo "*** copied dotfiles to /etc/skel/ for new users"
 
 useradd -m github # Create the user with a home directory and set default shell
-echo "github:azsxAZSX" | chpasswd
+echo "github:${do_pwd}" | chpasswd
 echo "*** Created user github."
 
 usermod -aG docker github
 echo "*** Added github to docker group."
-
 
 # https://github.com/johnmathews/lettergun-backend/blob/main/deployment.md
 mkdir -p /root/code/traefik-public/
