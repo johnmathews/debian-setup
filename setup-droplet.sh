@@ -37,7 +37,7 @@ apt-get update
 echo "*** apt-get update done."
 
 # Install required packages
-apt-get install -y apt-transport-https ca-certificates curl cmake software-properties-common fzf tree xclip npm
+apt-get install -y apt-transport-https ca-certificates curl cmake software-properties-common fzf tree xclip npm apache2-utils
 echo "*** apt-get install done."
 
 echo "*** Installed curl, apt-trasport-https, ca-certicates, curl, cmake, software-properties-common fzf"
