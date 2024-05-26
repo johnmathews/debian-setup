@@ -37,10 +37,9 @@ apt-get update
 echo "*** apt-get update done."
 
 # Install required packages
-apt-get install -y apt-transport-https ca-certificates curl cmake software-properties-common fzf tree xclip npm apache2-utils
-echo "*** apt-get install done."
-
-echo "*** Installed curl, apt-trasport-https, ca-certicates, curl, cmake, software-properties-common fzf"
+apt-get install -y apt-transport-https ca-certificates curl cmake software-properties-common fzf tree xclip npm apache2-utils gnupg lsb-release
+echo "*** apt-get install command finished."
+echo "*** Installed apt-transport-https ca-certificates curl cmake software-properties-common fzf tree xclip npm apache2-utils gnupg lsb-release "
 
 # Install neovim 0.9
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
@@ -211,12 +210,10 @@ echo "*** Created user github."
 usermod -aG docker github
 echo "*** Added github to docker group."
 
-# https://github.com/johnmathews/lettergun-backend/blob/main/deployment.md
-mkdir -p /root/code/traefik-public/
-echo "*** Created /root/code/traefik-public/"
-
 bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
 echo "*** Installed Atuin shell history"
+
+echo 'eval "$(atuin init zsh)"' >>~/.zshrc
 
 atuin register -u johnmathews -e mthwsjc@gmail.com
 echo "*** Installed Atuin shell history"
