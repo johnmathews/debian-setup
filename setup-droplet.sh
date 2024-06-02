@@ -233,7 +233,7 @@ su -c 'nvm install node && corepack enable' github
 echo "*** Setup complete. Good job!"
 
 timedatectl set-timezone Europe/Amsterdam
-echo "*** Set timezone to Europe/Amsterdam.
+echo "*** Set timezone to Europe/Amsterdam."
 
 echo "*** About to reboot"
 sudo reboot
