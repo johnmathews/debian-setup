@@ -77,6 +77,12 @@ echo "*** Docker CE installed."
 systemctl enable docker
 echo "*** Docker enabled to start on boot."
 
+# begin setup for portainer
+# https://docs.portainer.io/start/install-ce/server/docker/linux
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+
 mkdir -p ~/.config/nvim/
 echo "*** Created ~/.config/nvim/"
 
@@ -225,6 +231,9 @@ su -c 'export NVM_DIR=~/.nvm && curl https://raw.githubusercontent.com/creationi
 su -c 'nvm install node && corepack enable' github
 
 echo "*** Setup complete. Good job!"
+
+timedatectl set-timezone Europe/Amsterdam
+echo "*** Set timezone to Europe/Amsterdam.
 
 echo "*** About to reboot"
 sudo reboot
